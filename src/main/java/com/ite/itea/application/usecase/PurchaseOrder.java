@@ -5,16 +5,17 @@ import com.ite.itea.application.dto.Receipt;
 import com.ite.itea.domain.retail.Order;
 import com.ite.itea.domain.retail.ProductId;
 import com.ite.itea.domain.retail.ProductRepository;
+import com.ite.itea.presentation.ReceiptPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderProductsUseCase {
+public class PurchaseOrder {
 
     private final ProductRepository productRepository;
     private final ReceiptPresenter receiptPresenter;
 
-    public OrderProductsUseCase(ProductRepository productRepository, ReceiptPresenter receiptPresenter) {
+    public PurchaseOrder(ProductRepository productRepository, ReceiptPresenter receiptPresenter) {
         this.productRepository = productRepository;
         this.receiptPresenter = receiptPresenter;
     }
@@ -30,9 +31,5 @@ public class OrderProductsUseCase {
         }
 
         return receiptPresenter.prepareReceipt(new Order(orderItems));
-    }
-
-    public interface ReceiptPresenter {
-        Receipt prepareReceipt(Order order);
     }
 }

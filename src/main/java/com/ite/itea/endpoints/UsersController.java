@@ -1,6 +1,6 @@
 package com.ite.itea.endpoints;
 
-import com.ite.itea.application.usecase.GetUserInfoUseCase;
+import com.ite.itea.application.usecase.GetUserName;
 import com.ite.itea.domain.user.UserId;
 import com.ite.itea.persistence.FileSystemUserRepository;
 import com.ite.itea.presentation.UserInfoPresenter;
@@ -19,14 +19,14 @@ import org.springframework.web.server.ResponseStatusException;
 @Controller
 public class UsersController {
 
-    private final GetUserInfoUseCase userInfoUseCase;
+    private final GetUserName userInfoUseCase;
 
     UsersController() {
         URL usersFileUrl = getClass().getClassLoader().getResource("users.csv");
         String usersFilePath = Objects.requireNonNull(usersFileUrl).getFile();
         File file = new File(URLDecoder.decode(usersFilePath, StandardCharsets.UTF_8));
 
-        userInfoUseCase = new GetUserInfoUseCase(
+        userInfoUseCase = new GetUserName(
                 new FileSystemUserRepository(file),
                 new UserInfoPresenter()
         );
