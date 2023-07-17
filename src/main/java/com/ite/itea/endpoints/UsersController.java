@@ -2,7 +2,7 @@ package com.ite.itea.endpoints;
 
 import com.ite.itea.application.usecase.GetUserInfoUseCase;
 import com.ite.itea.domain.user.UserId;
-import com.ite.itea.persistence.FileSystemUserRepositoryImpl;
+import com.ite.itea.persistence.FileSystemUserRepository;
 import com.ite.itea.presentation.UserInfoPresenter;
 import java.io.File;
 import java.net.URL;
@@ -27,7 +27,7 @@ public class UsersController {
         File file = new File(URLDecoder.decode(usersFilePath, StandardCharsets.UTF_8));
 
         userInfoUseCase = new GetUserInfoUseCase(
-                new FileSystemUserRepositoryImpl(file),
+                new FileSystemUserRepository(file),
                 new UserInfoPresenter()
         );
     }
